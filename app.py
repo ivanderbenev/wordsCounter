@@ -26,11 +26,8 @@ def count_words_from_url():
     word_counter = ""
     for word, number in word_dict.items():
         word_counter += "<tr><td>" + word + ":</td><td>" + str(number) + "</td></tr>"
-    # f = open("text_from_html.txt", "w")
-    # f.write(text_from_html)
-    # f.close
+
     word_counter = "<table border=0>" + word_counter + "</table>"
-    # word_list.pop('')  # remove empty element
     return word_counter
 
 
