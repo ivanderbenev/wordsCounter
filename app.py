@@ -2,7 +2,6 @@ from flask import Flask
 import requests
 from bs4 import BeautifulSoup
 import re
-import json
 
 app = Flask(__name__)
 
@@ -18,12 +17,12 @@ def count_words_from_url():
     text_from_html = text_from_html.replace("we ve", "we\'ve")
     word_list = text_from_html.split(" ")
     del word_list[-1]  # remove last empty element
-
+    """Form a dictionary of words and their numbers"""
     word_dict = {}
     for word in word_list:
         number = text_from_html.count(word)
         word_dict[word] = number
-
+    """Convert the dictionary to an HTML table"""
     word_counter = ""
     for word, number in word_dict.items():
         word_counter += "<tr><td>" + word + ":</td><td>" + str(number) + "</td></tr>"
