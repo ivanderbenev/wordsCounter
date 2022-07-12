@@ -1,14 +1,13 @@
 from flask import Flask
-import urllib3
+import requests
 
-http = urllib3.PoolManager()
 app = Flask(__name__)
 
 
 @app.route('/')
 def hello_world():  # put application's code here
-    response = http.request("GET", "https://www.bbc.co.uk", verify=False)
-    return response.status
+    response = requests.get("https://www.bbc.co.uk/")
+    return str(response.text)
 
 
 if __name__ == '__main__':
