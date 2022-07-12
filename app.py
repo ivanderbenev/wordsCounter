@@ -1,14 +1,14 @@
-from flask import Flask
-import requests
+from flask import Flask, request
+import requests, re
 from bs4 import BeautifulSoup
-import re
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def count_words_from_url():
-    response = requests.get("https://www.bbc.co.uk/")
+    url = request.args.get('url', 0, type=str)
+    response = requests.get(url)
     html_source = response.text  # html code from url
     soup = BeautifulSoup(html_source, 'html.parser')
     text_from_html = soup.get_text(" ").lower()  # text between html tags in lower case
