@@ -9,7 +9,6 @@ app = Flask(__name__)
 
 @app.route('/')
 def count_words_from_url():
-    word_dict = {}
     response = requests.get("https://www.bbc.co.uk/")
     html_source = response.text  # html code from url
     soup = BeautifulSoup(html_source, 'html.parser')
@@ -19,6 +18,8 @@ def count_words_from_url():
     text_from_html = text_from_html.replace("we ve", "we\'ve")
     word_list = text_from_html.split(" ")
     del word_list[-1]  # remove last empty element
+
+    word_dict = {}
     for word in word_list:
         number = text_from_html.count(word)
         word_dict[word] = number
