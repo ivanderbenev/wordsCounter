@@ -32,7 +32,7 @@ def count_words_from_url():
         word_counter += "<tr><td>" + word + ":</td><td>" + str(number) + "</td></tr>"
 
     word_counter = "<table border=0>" + word_counter + "</table>"
-    return render_template(word_counter)
+    return word_counter
 
 @app.errorhandler(Exception)
 def handle_exception(e):
@@ -42,6 +42,7 @@ def handle_exception(e):
 
     # non-HTTP errors
     return "Incorrect URL"
+
 
 if __name__ == '__main__':
     app.run()
